@@ -19,19 +19,61 @@ let amigos = [];
 
 //funciones
 function agregarAmigo(){
-amigos.push(document.getElementById('amigo').value);
-console.log(amigos);
-borrarLabel();
+    //amigos.push(document.getElementById('amigo').value);
+    //console.log(amigos[amigos.length]);
+    //console.log(amigos.length);
+    let personaNueva= document.getElementById('amigo').value;
+
+        if (personaNueva.trim() !== '') { //verificar que no este vacio
+            amigos.push(personaNueva);
+            console.log(amigos[amigos.length-1]);
+            console.log(amigos);
+
+            lista();
+            borrarLabel();
+            
+        } else {
+            alert('Por favor, coloque un nombre antes de presionar.');
+            
+        }
 
 }
 
 function sortearAmigo(){
+
+    let sorteo= Math.floor(Math.random()*amigos.length);
+    console.log(amigos);
+    console.log(sorteo);
+    console.log(amigos.length);
+    let sorteado= document.getElementById('resultado');
+    sorteado.innerHTML="";
+
+    let renglon= document.createElement("li");
+    renglon.textContent= amigos[sorteo];
+    sorteado.appendChild(renglon);
+    return;
     
 }
 
 function borrarLabel(){
 
-    let label= document.querySelector('#amigo');
+    let label= document.getElementById('amigo');
     label.value='';    
     return;
+}
+
+function lista(){
+    let personas= document.getElementById('listaAmigos');
+    personas.innerHTML=""; //limpiar la lista antes de volver a generarla
+
+    amigos.forEach(amigo => { // Iterar sobre el array amigos
+        let renglon = document.createElement("li");
+        renglon.textContent = amigo; // Usar el valor del array
+        personas.appendChild(renglon);
+      });   
+   
+
+
+    return;
+
 }
