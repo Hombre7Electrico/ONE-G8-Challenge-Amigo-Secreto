@@ -19,7 +19,8 @@ let amigos = [];
 
 //funciones
 function agregarAmigo(){
-amigos.push = Document.getElementById('amigo');
+amigos.push(document.getElementById('amigo').value);
+console.log(amigos);
 borrarLabel();
 
 }
@@ -29,5 +30,8 @@ function sortearAmigo(){
 }
 
 function borrarLabel(){
-    
+
+    let label= document.querySelector('#amigo');
+    label.value='';    
+    return;
 }
