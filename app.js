@@ -14,6 +14,7 @@ página.*/
 
 //variables
 let amigos = [];
+let amigoSecreto= [];
 
 //programa principal
 
@@ -29,12 +30,15 @@ function agregarAmigo(){
             console.log(amigos[amigos.length-1]);
             console.log(amigos);
 
+            cantidadAmigos= amigos.length;
+
             lista();
             borrarLabel();
+            return;
             
         } else {
             alert('Por favor, coloque un nombre antes de presionar.');
-            
+            return;            
         }
 
 }
@@ -45,13 +49,36 @@ function sortearAmigo(){
     console.log(amigos);
     console.log(sorteo);
     console.log(amigos.length);
-    let sorteado= document.getElementById('resultado');
-    sorteado.innerHTML="";
 
-    let renglon= document.createElement("li");
-    renglon.textContent= amigos[sorteo];
-    sorteado.appendChild(renglon);
-    return;
+    if(amigos.length == amigoSecreto.length){
+        let sorteado= document.getElementById('resultado');
+        sorteado.innerHTML="";
+        alert('Todos los amigos sorteados');
+        return; 
+
+    }
+
+    else{
+
+        if(amigoSecreto.includes(sorteo)){
+
+            return sortearAmigo();
+
+        }
+        else{
+                        //carga en el vector de amigos sorteados
+                        amigoSecreto.push(sorteo);
+                        //borra el label de resultado
+                        let sorteado= document.getElementById('resultado');
+                        sorteado.innerHTML="";
+                        //reescribe el label de resultado
+                        let renglon= document.createElement("li");
+                        renglon.textContent= amigos[sorteo];
+                        sorteado.appendChild(renglon);
+                        return;     
+
+        }
+    }
     
 }
 
